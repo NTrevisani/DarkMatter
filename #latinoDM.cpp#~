@@ -1,0 +1,11 @@
+#include "TROOT.h"
+#include "TFile.h"
+
+int main(){
+
+  TFile *f = new TFile("/afs/cern.ch/user/d/dburns/public/HWWSignalMC/ppTOhxx_hTO2wTO2l2v_100GeV_8TeV.root","read");
+  TTree *t = (TTree*)f -> Get("Delphes");
+
+  //variables definition, set branch address
+
+}
