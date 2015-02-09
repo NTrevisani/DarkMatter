@@ -6,12 +6,28 @@ This code compares the H -> WW -> lvlv variables distributions with the pp -> HX
 
 The samples are stored on lxplus:
 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 H->WW: /afs/cern.ch/user/n/ntrevisa/public/latinoHWW
 
 HXX->WWXX: /afs/cern.ch/user/d/dburns/public/HWWSignalMC/
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-latinoDM.cpp (UNDER CONSTRUCTION!!) exploits the HXX sample variables to build latinos variables, in order to ease the comparison.
+To exploit the HXX sample variables to build a latino-like tree, and ease the comparison:
 
-macro.C (UNDER CONSTRUCTION!!) plots the distributions of a variable in the two cases, on the same canvas.
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+c++ -O2 -lm `root-config --cflags --glibs` -o latinoDM latinoDM.cpp
 
-the setups used for ROOT are contained in setup_slc6.sh
+latinoDM
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To plot the distributions of the variables in the two cases, on the same canvas:
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+root -l macro.C
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+the setups used for ROOT are contained in:
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ setup_slc6.sh
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
