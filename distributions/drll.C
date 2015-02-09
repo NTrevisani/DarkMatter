@@ -1,7 +1,7 @@
 {
 //=========Macro generated from canvas: latinoVar/latinoVar
-//=========  (Mon Feb  9 13:15:31 2015) by ROOT version5.34/09
-   TCanvas *latinoVar = new TCanvas("latinoVar", "latinoVar",65,52,600,600);
+//=========  (Mon Feb  9 14:45:06 2015) by ROOT version5.34/09
+   TCanvas *latinoVar = new TCanvas("latinoVar", "latinoVar",765,52,600,600);
    latinoVar->Range(0,0,1,1);
    latinoVar->SetFillColor(0);
    latinoVar->SetBorderMode(0);
@@ -68,44 +68,44 @@
    hLatino->Draw("");
    
    TH1F *hDark = new TH1F("hDark","drll",100,-6.494854,6.494854);
-   hDark->SetBinContent(51,0.0008617904);
-   hDark->SetBinContent(52,0.00624798);
-   hDark->SetBinContent(53,0.01001831);
-   hDark->SetBinContent(54,0.02197566);
-   hDark->SetBinContent(55,0.0583863);
-   hDark->SetBinContent(56,0.05515458);
-   hDark->SetBinContent(57,0.04578261);
-   hDark->SetBinContent(58,0.04739847);
-   hDark->SetBinContent(59,0.04589034);
-   hDark->SetBinContent(60,0.03888829);
-   hDark->SetBinContent(61,0.04201228);
-   hDark->SetBinContent(62,0.0429818);
-   hDark->SetBinContent(63,0.04265862);
-   hDark->SetBinContent(64,0.03694926);
-   hDark->SetBinContent(65,0.04082732);
-   hDark->SetBinContent(66,0.03738016);
-   hDark->SetBinContent(67,0.04448993);
-   hDark->SetBinContent(68,0.0402887);
-   hDark->SetBinContent(69,0.03770333);
-   hDark->SetBinContent(70,0.04039642);
-   hDark->SetBinContent(71,0.04104277);
-   hDark->SetBinContent(72,0.04287407);
-   hDark->SetBinContent(73,0.04093504);
-   hDark->SetBinContent(74,0.03931919);
-   hDark->SetBinContent(75,0.03522568);
-   hDark->SetBinContent(76,0.01798987);
-   hDark->SetBinContent(77,0.01411182);
-   hDark->SetBinContent(78,0.01055693);
-   hDark->SetBinContent(79,0.006355704);
-   hDark->SetBinContent(80,0.005924809);
-   hDark->SetBinContent(81,0.003770333);
-   hDark->SetBinContent(82,0.001508133);
-   hDark->SetBinContent(83,0.002154476);
-   hDark->SetBinContent(84,0.0006463428);
-   hDark->SetBinContent(85,0.0007540666);
-   hDark->SetBinContent(86,0.0004308952);
-   hDark->SetBinContent(87,0.0001077238);
-   hDark->SetEntries(9384);
+   hDark->SetBinContent(51,0.0008616048);
+   hDark->SetBinContent(52,0.006246634);
+   hDark->SetBinContent(53,0.01001616);
+   hDark->SetBinContent(54,0.02197092);
+   hDark->SetBinContent(55,0.05837372);
+   hDark->SetBinContent(56,0.0551427);
+   hDark->SetBinContent(57,0.04577275);
+   hDark->SetBinContent(58,0.04738826);
+   hDark->SetBinContent(59,0.04609585);
+   hDark->SetBinContent(60,0.03887991);
+   hDark->SetBinContent(61,0.04200323);
+   hDark->SetBinContent(62,0.04297253);
+   hDark->SetBinContent(63,0.04264943);
+   hDark->SetBinContent(64,0.0369413);
+   hDark->SetBinContent(65,0.04081852);
+   hDark->SetBinContent(66,0.0373721);
+   hDark->SetBinContent(67,0.04448035);
+   hDark->SetBinContent(68,0.04028002);
+   hDark->SetBinContent(69,0.03769521);
+   hDark->SetBinContent(70,0.04038772);
+   hDark->SetBinContent(71,0.04103393);
+   hDark->SetBinContent(72,0.04286484);
+   hDark->SetBinContent(73,0.04092623);
+   hDark->SetBinContent(74,0.03931072);
+   hDark->SetBinContent(75,0.03521809);
+   hDark->SetBinContent(76,0.017986);
+   hDark->SetBinContent(77,0.01410878);
+   hDark->SetBinContent(78,0.01055466);
+   hDark->SetBinContent(79,0.006354335);
+   hDark->SetBinContent(80,0.005923532);
+   hDark->SetBinContent(81,0.003769521);
+   hDark->SetBinContent(82,0.001507808);
+   hDark->SetBinContent(83,0.002154012);
+   hDark->SetBinContent(84,0.0006462036);
+   hDark->SetBinContent(85,0.0007539042);
+   hDark->SetBinContent(86,0.0004308024);
+   hDark->SetBinContent(87,0.0001077006);
+   hDark->SetEntries(9386);
    hDark->SetStats(0);
 
    ci = TColor::GetColor("#0000ff");
@@ -125,7 +125,7 @@
    hDark->GetZaxis()->SetTitleFont(42);
    hDark->Draw("same");
    
-   TLegend *leg = new TLegend(2.121996e-314,2.121996e-314,4.940656e-324,0,NULL,"brNDC");
+   TLegend *leg = new TLegend(0,0,0,0,NULL,"brNDC");
    leg->SetBorderSize(1);
    leg->SetLineColor(0);
    leg->SetLineStyle(1);

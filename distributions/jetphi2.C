@@ -1,6 +1,6 @@
 {
 //=========Macro generated from canvas: latinoVar/latinoVar
-//=========  (Mon Feb  9 13:16:55 2015) by ROOT version5.34/09
+//=========  (Mon Feb  9 14:46:34 2015) by ROOT version5.34/09
    TCanvas *latinoVar = new TCanvas("latinoVar", "latinoVar",765,52,600,600);
    latinoVar->Range(0,0,1,1);
    latinoVar->SetFillColor(0);
@@ -37,11 +37,11 @@
    hLatino->Draw("");
    
    TH1F *hDark = new TH1F("hDark","jetphi2",100,-126.3317,126.3317);
-   hDark->SetBinContent(49,0.08348594);
-   hDark->SetBinContent(50,0.4038565);
-   hDark->SetBinContent(51,0.4113972);
-   hDark->SetBinContent(52,0.1012604);
-   hDark->SetEntries(9384);
+   hDark->SetBinContent(49,0.08228325);
+   hDark->SetBinContent(50,0.4096931);
+   hDark->SetBinContent(51,0.4062466);
+   hDark->SetBinContent(52,0.1017771);
+   hDark->SetEntries(9386);
    hDark->SetStats(0);
 
    ci = TColor::GetColor("#0000ff");
@@ -61,7 +61,7 @@
    hDark->GetZaxis()->SetTitleFont(42);
    hDark->Draw("same");
    
-   TLegend *leg = new TLegend(2.121996e-314,2.121996e-314,-nan,0,NULL,"brNDC");
+   TLegend *leg = new TLegend(0,-nan,0,2.121996e-314,NULL,"brNDC");
    leg->SetBorderSize(1);
    leg->SetLineColor(0);
    leg->SetLineStyle(1);

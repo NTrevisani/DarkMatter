@@ -1,6 +1,6 @@
 {
 //=========Macro generated from canvas: latinoVar/latinoVar
-//=========  (Mon Feb  9 13:18:02 2015) by ROOT version5.34/09
+//=========  (Mon Feb  9 14:47:46 2015) by ROOT version5.34/09
    TCanvas *latinoVar = new TCanvas("latinoVar", "latinoVar",765,52,600,600);
    latinoVar->Range(0,0,1,1);
    latinoVar->SetFillColor(0);
@@ -34,9 +34,9 @@
    hLatino->Draw("");
    
    TH1F *hDark = new TH1F("hDark","eta2",100,-296.6479,296.6479);
-   hDark->SetBinContent(50,0.4888506);
-   hDark->SetBinContent(51,0.5111494);
-   hDark->SetEntries(9384);
+   hDark->SetBinContent(50,0.4887453);
+   hDark->SetBinContent(51,0.5112547);
+   hDark->SetEntries(9386);
    hDark->SetStats(0);
 
    ci = TColor::GetColor("#0000ff");

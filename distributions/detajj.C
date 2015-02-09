@@ -1,7 +1,7 @@
 {
 //=========Macro generated from canvas: latinoVar/latinoVar
-//=========  (Mon Feb  9 13:15:11 2015) by ROOT version5.34/09
-   TCanvas *latinoVar = new TCanvas("latinoVar", "latinoVar",65,52,600,600);
+//=========  (Mon Feb  9 14:44:46 2015) by ROOT version5.34/09
+   TCanvas *latinoVar = new TCanvas("latinoVar", "latinoVar",765,52,600,600);
    latinoVar->Range(0,0,1,1);
    latinoVar->SetFillColor(0);
    latinoVar->SetBorderMode(0);
@@ -78,46 +78,47 @@
    hLatino->Draw("");
    
    TH1F *hDark = new TH1F("hDark","detajj",100,-10.19499,10.19499);
-   hDark->SetBinContent(51,0.06538834);
-   hDark->SetBinContent(52,0.06765054);
-   hDark->SetBinContent(53,0.06818917);
-   hDark->SetBinContent(54,0.07249811);
-   hDark->SetBinContent(55,0.06194118);
-   hDark->SetBinContent(56,0.0629107);
-   hDark->SetBinContent(57,0.05623182);
-   hDark->SetBinContent(58,0.05773995);
-   hDark->SetBinContent(59,0.05019929);
-   hDark->SetBinContent(60,0.04212001);
-   hDark->SetBinContent(61,0.04535172);
-   hDark->SetBinContent(62,0.04201228);
-   hDark->SetBinContent(63,0.04136594);
-   hDark->SetBinContent(64,0.03608747);
-   hDark->SetBinContent(65,0.03274803);
-   hDark->SetBinContent(66,0.02757729);
-   hDark->SetBinContent(67,0.02617688);
-   hDark->SetBinContent(68,0.02229883);
-   hDark->SetBinContent(69,0.01939028);
-   hDark->SetBinContent(70,0.01852849);
-   hDark->SetBinContent(71,0.01551223);
-   hDark->SetBinContent(72,0.01249596);
-   hDark->SetBinContent(73,0.01055693);
-   hDark->SetBinContent(74,0.007432942);
-   hDark->SetBinContent(75,0.007971561);
-   hDark->SetBinContent(76,0.007109771);
-   hDark->SetBinContent(77,0.005170742);
-   hDark->SetBinContent(78,0.003662609);
-   hDark->SetBinContent(79,0.002369924);
-   hDark->SetBinContent(80,0.002800819);
-   hDark->SetBinContent(81,0.001723581);
-   hDark->SetBinContent(82,0.001939028);
-   hDark->SetBinContent(83,0.0006463428);
-   hDark->SetBinContent(84,0.002585371);
-   hDark->SetBinContent(85,0.0007540666);
-   hDark->SetBinContent(86,0.0003231714);
-   hDark->SetBinContent(87,0.0002154476);
-   hDark->SetBinContent(88,0.0001077238);
-   hDark->SetBinContent(89,0.0002154476);
-   hDark->SetEntries(9384);
+   hDark->SetBinContent(51,0.06523585);
+   hDark->SetBinContent(52,0.06669091);
+   hDark->SetBinContent(53,0.06960107);
+   hDark->SetBinContent(54,0.07263247);
+   hDark->SetBinContent(55,0.06087062);
+   hDark->SetBinContent(56,0.06208318);
+   hDark->SetBinContent(57,0.05662665);
+   hDark->SetBinContent(58,0.05796047);
+   hDark->SetBinContent(59,0.04886625);
+   hDark->SetBinContent(60,0.04146963);
+   hDark->SetBinContent(61,0.04437977);
+   hDark->SetBinContent(62,0.04340972);
+   hDark->SetBinContent(63,0.04074209);
+   hDark->SetBinContent(64,0.03625561);
+   hDark->SetBinContent(65,0.03140536);
+   hDark->SetBinContent(66,0.02813144);
+   hDark->SetBinContent(67,0.02558506);
+   hDark->SetBinContent(68,0.02291743);
+   hDark->SetBinContent(69,0.01927974);
+   hDark->SetBinContent(70,0.01952225);
+   hDark->SetBinContent(71,0.01649085);
+   hDark->SetBinContent(72,0.01297441);
+   hDark->SetBinContent(73,0.01067055);
+   hDark->SetBinContent(74,0.007881653);
+   hDark->SetBinContent(75,0.008366679);
+   hDark->SetBinContent(76,0.007154117);
+   hDark->SetBinContent(77,0.004728992);
+   hDark->SetBinContent(78,0.003758943);
+   hDark->SetBinContent(79,0.002303868);
+   hDark->SetBinContent(80,0.003152661);
+   hDark->SetBinContent(81,0.001576331);
+   hDark->SetBinContent(82,0.001940099);
+   hDark->SetBinContent(83,0.0006062811);
+   hDark->SetBinContent(84,0.002910149);
+   hDark->SetBinContent(85,0.0008487935);
+   hDark->SetBinContent(86,0.0003637686);
+   hDark->SetBinContent(87,0.0002425124);
+   hDark->SetBinContent(88,0.0001212562);
+   hDark->SetBinContent(89,0.0002425124);
+   hDark->SetBinContent(101,1038);
+   hDark->SetEntries(9386);
    hDark->SetStats(0);
 
    ci = TColor::GetColor("#0000ff");
@@ -137,7 +138,7 @@
    hDark->GetZaxis()->SetTitleFont(42);
    hDark->Draw("same");
    
-   TLegend *leg = new TLegend(0,0,0,2.121996e-314,NULL,"brNDC");
+   TLegend *leg = new TLegend(0,0,0,0,NULL,"brNDC");
    leg->SetBorderSize(1);
    leg->SetLineColor(0);
    leg->SetLineStyle(1);
