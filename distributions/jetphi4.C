@@ -1,20 +1,19 @@
 {
 //=========Macro generated from canvas: latinoVar/latinoVar
-//=========  (Mon Feb  9 14:46:49 2015) by ROOT version5.34/09
-   TCanvas *latinoVar = new TCanvas("latinoVar", "latinoVar",765,52,600,600);
+//=========  (Tue Feb 10 15:30:21 2015) by ROOT version5.34/09
+   TCanvas *latinoVar = new TCanvas("latinoVar", "latinoVar",65,52,600,600);
    latinoVar->Range(0,0,1,1);
    latinoVar->SetFillColor(0);
    latinoVar->SetBorderMode(0);
    latinoVar->SetBorderSize(2);
    latinoVar->SetFrameBorderMode(0);
    
-   TH1F *hLatino = new TH1F("hLatino","jetphi4",100,-121.4801,121.4801);
-   hLatino->SetBinContent(0,0.8397232);
-   hLatino->SetBinContent(49,0.1116957);
-   hLatino->SetBinContent(50,0.3859863);
-   hLatino->SetBinContent(51,0.3875974);
-   hLatino->SetBinContent(52,0.1147207);
-   hLatino->SetEntries(112004);
+   TH1F *hLatino = new TH1F("hLatino","jetphi4",100,-117.8518,117.8518);
+   hLatino->SetBinContent(49,0.1235656);
+   hLatino->SetBinContent(50,0.3741163);
+   hLatino->SetBinContent(51,0.3751028);
+   hLatino->SetBinContent(52,0.1272153);
+   hLatino->SetEntries(60927);
    hLatino->SetStats(0);
 
    Int_t ci;   // for color index setting
@@ -36,12 +35,12 @@
    hLatino->GetZaxis()->SetTitleFont(42);
    hLatino->Draw("");
    
-   TH1F *hDark = new TH1F("hDark","jetphi4",100,-121.4801,121.4801);
-   hDark->SetBinContent(49,0.1121163);
-   hDark->SetBinContent(50,0.4155089);
-   hDark->SetBinContent(51,0.364028);
-   hDark->SetBinContent(52,0.1083468);
-   hDark->SetEntries(9386);
+   TH1F *hDark = new TH1F("hDark","jetphi4",100,-117.8518,117.8518);
+   hDark->SetBinContent(49,0.1287299);
+   hDark->SetBinContent(50,0.4065496);
+   hDark->SetBinContent(51,0.3426694);
+   hDark->SetBinContent(52,0.1220511);
+   hDark->SetEntries(9384);
    hDark->SetStats(0);
 
    ci = TColor::GetColor("#0000ff");
@@ -61,7 +60,7 @@
    hDark->GetZaxis()->SetTitleFont(42);
    hDark->Draw("same");
    
-   TLegend *leg = new TLegend(2.121996e-314,2.121996e-314,4.940656e-324,0,NULL,"brNDC");
+   TLegend *leg = new TLegend(3.90133e-316,4.2482e-316,6.213337e-298,0,NULL,"brNDC");
    leg->SetBorderSize(1);
    leg->SetLineColor(0);
    leg->SetLineStyle(1);

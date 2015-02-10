@@ -1,6 +1,6 @@
 {
 //=========Macro generated from canvas: latinoVar/latinoVar
-//=========  (Mon Feb  9 14:46:20 2015) by ROOT version5.34/09
+//=========  (Tue Feb 10 15:29:53 2015) by ROOT version5.34/09
    TCanvas *latinoVar = new TCanvas("latinoVar", "latinoVar",65,52,600,600);
    latinoVar->Range(0,0,1,1);
    latinoVar->SetFillColor(0);
@@ -8,11 +8,11 @@
    latinoVar->SetBorderSize(2);
    latinoVar->SetFrameBorderMode(0);
    
-   TH1F *hLatino = new TH1F("hLatino","phi2",100,-134.6379,134.6379);
-   hLatino->SetBinContent(49,0.07010536);
-   hLatino->SetBinContent(50,0.431597);
-   hLatino->SetBinContent(51,0.4275846);
-   hLatino->SetBinContent(52,0.07071303);
+   TH1F *hLatino = new TH1F("hLatino","phi2",100,-129.7579,129.7579);
+   hLatino->SetBinContent(49,0.085449);
+   hLatino->SetBinContent(50,0.4162534);
+   hLatino->SetBinContent(51,0.4116154);
+   hLatino->SetBinContent(52,0.08668222);
    hLatino->SetEntries(112004);
    hLatino->SetStats(0);
 
@@ -35,12 +35,12 @@
    hLatino->GetZaxis()->SetTitleFont(42);
    hLatino->Draw("");
    
-   TH1F *hDark = new TH1F("hDark","phi2",100,-134.6379,134.6379);
-   hDark->SetBinContent(49,0.06698977);
-   hDark->SetBinContent(50,0.4297253);
-   hDark->SetBinContent(51,0.4273559);
-   hDark->SetBinContent(52,0.07592892);
-   hDark->SetEntries(9386);
+   TH1F *hDark = new TH1F("hDark","phi2",100,-129.7579,129.7579);
+   hDark->SetBinContent(49,0.08262415);
+   hDark->SetBinContent(50,0.4139825);
+   hDark->SetBinContent(51,0.4125821);
+   hDark->SetBinContent(52,0.09081116);
+   hDark->SetEntries(9384);
    hDark->SetStats(0);
 
    ci = TColor::GetColor("#0000ff");
@@ -60,7 +60,7 @@
    hDark->GetZaxis()->SetTitleFont(42);
    hDark->Draw("same");
    
-   TLegend *leg = new TLegend(2.121996e-314,2.121996e-314,4.940656e-324,0,NULL,"brNDC");
+   TLegend *leg = new TLegend(0,0,0,0,NULL,"brNDC");
    leg->SetBorderSize(1);
    leg->SetLineColor(0);
    leg->SetLineStyle(1);

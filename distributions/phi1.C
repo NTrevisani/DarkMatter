@@ -1,18 +1,18 @@
 {
 //=========Macro generated from canvas: latinoVar/latinoVar
-//=========  (Mon Feb  9 14:46:14 2015) by ROOT version5.34/09
-   TCanvas *latinoVar = new TCanvas("latinoVar", "latinoVar",765,52,600,600);
+//=========  (Tue Feb 10 15:29:46 2015) by ROOT version5.34/09
+   TCanvas *latinoVar = new TCanvas("latinoVar", "latinoVar",65,52,600,600);
    latinoVar->Range(0,0,1,1);
    latinoVar->SetFillColor(0);
    latinoVar->SetBorderMode(0);
    latinoVar->SetBorderSize(2);
    latinoVar->SetFrameBorderMode(0);
    
-   TH1F *hLatino = new TH1F("hLatino","phi1",100,-139.9028,139.9028);
-   hLatino->SetBinContent(49,0.0549047);
-   hLatino->SetBinContent(50,0.4445993);
-   hLatino->SetBinContent(51,0.4453053);
-   hLatino->SetBinContent(52,0.05519066);
+   TH1F *hLatino = new TH1F("hLatino","phi1",100,-134.4596,134.4596);
+   hLatino->SetBinContent(49,0.07241987);
+   hLatino->SetBinContent(50,0.4270842);
+   hLatino->SetBinContent(51,0.4280225);
+   hLatino->SetBinContent(52,0.07247348);
    hLatino->SetEntries(112004);
    hLatino->SetStats(0);
 
@@ -35,12 +35,12 @@
    hLatino->GetZaxis()->SetTitleFont(42);
    hLatino->Draw("");
    
-   TH1F *hDark = new TH1F("hDark","phi1",100,-139.9028,139.9028);
-   hDark->SetBinContent(49,0.05320409);
-   hDark->SetBinContent(50,0.4532041);
-   hDark->SetBinContent(51,0.4329564);
-   hDark->SetBinContent(52,0.06063543);
-   hDark->SetEntries(9386);
+   TH1F *hDark = new TH1F("hDark","phi1",100,-134.4596,134.4596);
+   hDark->SetBinContent(49,0.07702252);
+   hDark->SetBinContent(50,0.4294948);
+   hDark->SetBinContent(51,0.4166757);
+   hDark->SetBinContent(52,0.07680707);
+   hDark->SetEntries(9384);
    hDark->SetStats(0);
 
    ci = TColor::GetColor("#0000ff");
@@ -60,7 +60,7 @@
    hDark->GetZaxis()->SetTitleFont(42);
    hDark->Draw("same");
    
-   TLegend *leg = new TLegend(2.121996e-314,2.121996e-314,4.940656e-324,0,NULL,"brNDC");
+   TLegend *leg = new TLegend(0,0,0,0,NULL,"brNDC");
    leg->SetBorderSize(1);
    leg->SetLineColor(0);
    leg->SetLineStyle(1);
