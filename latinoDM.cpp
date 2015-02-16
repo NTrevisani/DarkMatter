@@ -198,9 +198,9 @@ int readDataset (TString datasetBaseName, TTree* nt)
       std::vector<float> jetPhi;
       std::vector<float> jetEta;
       std::vector<float> jetM;
-
+      jetPt.clear();
       
-      //use the latino's jets selections: pT > 30GeV, |eta| < 4.7
+      //use the latino's jets selections: pT > 20GeV, |eta| < 4.7
       for (int i = 0; i < 10; ++i)
 	if(dt.Jet_PT[i] > 20 && fabs(dt.Jet_Eta[i]) < 4.7){
 	  jetPt.push_back(dt.Jet_PT[i]);
@@ -236,7 +236,8 @@ int readDataset (TString datasetBaseName, TTree* nt)
     eta1 = lepEta.at(0);
     eta2 = lepEta.at(1);
 
-    njet = jetPt.size();
+    njet = dt.Jet_size;//jetPt.size();
+    //cout<<njet<<endl;
 
     //basic jets variables
     if( jetPt.size() > 0 ){

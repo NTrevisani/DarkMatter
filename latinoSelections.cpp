@@ -1,3 +1,4 @@
+//this file opens the latino's H->WW file and creates a new TTree with some variables and the selections cut applied at the Dark Matter sample
 //compile typing: c++ -O2 -lm `root-config --cflags --glibs` -o latinoSelections latinoSelections.cpp
 //run typing: ./latinoSelections
 
@@ -17,6 +18,7 @@
 #include "TLorentzVector.h"
 #include "TMath.h"
 #include <math.h>
+#include "TSystem.h"
 
 #include "LatinoTree.h"
 #include "LatinoTree.C"
@@ -38,7 +40,7 @@ int readDataset (TString datasetBaseName, TTree* nt)
   //Float_t chmet;        nt->Branch("chmet"       , &chmet,"chmet");
   //Float_t dataset;      nt->Branch("dataset"     , &dataset,"dataset");
   Float_t dphill;       nt->Branch("dphill"      , &dphill,"dphill");
-  Float_t detall;       //nt->Branch("detall"      , &detall,"detall");
+  //Float_t detall;       //nt->Branch("detall"      , &detall,"detall");
   Float_t detajj;       nt->Branch("detajj"      , &detajj,"detajj");
   Float_t dphilljet;    nt->Branch("dphilljet"   , &dphilljet,"dphilljet");
   Float_t dphilljetjet; nt->Branch("dphilljetjet", &dphilljetjet,"dphilljetjet");
@@ -109,39 +111,64 @@ int readDataset (TString datasetBaseName, TTree* nt)
     {
       ch->GetEntry (iEvent) ;
       if (iEvent % 10000 == 0) cout << "reading event number " << iEvent << "\n" ;
+      
+      //if (dt.jetpt1 < 20) continue;
+      //if (dt.jetpt2 < 20) continue;
+      if (dt.pt1 < 10) continue;
+      if (dt.pt2 < 10) continue;
 
-      if (dt.jetpt1 < 30) continue;
-      if (dt.jetpt2 < 30) continue;
-      if (dt.pt1 < 20) continue;
-      if (dt.pt2 < 20) continue;
-
-      if (fabs(dt.jeteta1) > 4.7) continue;
-      if (fabs(dt.jeteta2) > 4.7) continue;
+      //if (fabs(dt.jeteta1) > 4.7) continue;
+      //if (fabs(dt.jeteta2) > 4.7) continue;
       if (fabs(dt.eta1) > 2.5) continue;
       if (fabs(dt.eta2) > 2.5) continue;
 
-
-      dphill = dt.dphill;
       //detall = dt.detall;
-   detajj = dt.detajj;
+
+   njet = dt.njet;       
+   dphill = dt.dphill;
+   if(njet != 0)
    dphilljet = dt.dphilljet;
+
+   if(njet > 1){
+   detajj = dt.detajj;
    dphilljetjet = dt.dphilljetjet;
+   mjj = dt.mjj;        
+   }
+
    drll = dt.drll;        
   // effW = dt.;
-   jeteta1 = dt.jeteta1;
-   jeteta2 = dt.jeteta2;
-   jeteta3 = dt.jeteta3;
-   jeteta4 = dt.jeteta4;
-   jetpt1 = dt.jetpt1; 
-   jetpt2 = dt.jetpt2; 
-   jetpt3 = dt.jetpt3; 
-   jetpt4 = dt.jetpt4; 
+
+   if (dt.jetpt1 > 20 && (fabs(dt.jeteta1) < 4.7)){ 
+     jetpt1 = dt.jetpt1; 
+     jetphi1 = dt.jetphi1;
+     jeteta1 = dt.jeteta1;   
+     }
+
+   if (dt.jetpt2 > 20 && (fabs(dt.jeteta2) < 4.7)){ 
+     jetpt2 = dt.jetpt2; 
+     jetphi2 = dt.jetphi2;
+     jeteta2 = dt.jeteta2;   
+     }
+
+   if (dt.jetpt3 > 20 && (fabs(dt.jeteta3) < 4.7)){ 
+     jetpt3 = dt.jetpt3; 
+     jetphi3 = dt.jetphi3;
+     jeteta3 = dt.jeteta3;   
+     }
+
+   if (dt.jetpt4 > 20 && (fabs(dt.jeteta4) < 4.7)){ 
+     jetpt4 = dt.jetpt4; 
+     jetphi4 = dt.jetphi4;
+     jeteta4 = dt.jeteta4;
+     }
+
+
    phi1 = dt.phi1;   
    phi2 = dt.phi2;   
    jetphi1 = dt.jetphi1;
    jetphi2 = dt.jetphi2;
-   jetphi3 = dt.jetphi3;
-   jetphi4 = dt.jetphi4;
+
+
    //jetM1 = dt.jetM1;  
    //jetM2 = dt.jetM2;  
    //jetM3 = dt.jetM3;  
@@ -150,13 +177,13 @@ int readDataset (TString datasetBaseName, TTree* nt)
   // jettche2 = dt.; 
   // mctruth = dt.;  
    mll = dt.mll;        
-   mjj = dt.mjj;        
+
   // mpmet = dt.;    
   // mth = dt.;      
   // nbjet = dt.;    
   // nbjettche = dt.;
   // nextra = dt.;   
-   njet = dt.njet;       
+
   // nvtx = dt.;     
   // pchmet = dt.;   
    pfmet = dt.pfmet;      
@@ -189,51 +216,20 @@ int readDataset (TString datasetBaseName, TTree* nt)
 	
       nt->Fill();
     }
+  cout<<ch->GetEntries()<<endl;
 }
 
 int main(){
 
-  TString Name = "/afs/cern.ch/user/n/ntrevisa/public/latinoHWW/latino*";
+  TString Name = "/afs/cern.ch/user/n/ntrevisa/public/latinoHWW/latino*"; //_1125_ggToH125toWWTo2LAndTau2Nu.root";
 
  TTree *lat = new TTree ("latino","latino");
  lat->SetDirectory(0);
 
-  TFile *outfile = new TFile("latinoSelections.root", "recreate");
+  TFile *outfile = new TFile("latinoSelections8TeV.root", "recreate");
   readDataset(Name,lat);
   outfile->cd();
   lat->Write();
   outfile->Close();
 }
-/*
-  TChain * ch = new TChain ("latino") ;
-  ch->Add("/afs/cern.ch/user/n/ntrevisa/public/latinoHWW/latino_1125_ggToH125toWWTo2LAndTau2Nu.root");
-  ch->Add("/afs/cern.ch/user/n/ntrevisa/public/latinoHWW/latino_3125_wzttH125ToWW.root");
-  ch->Add("/afs/cern.ch/user/n/ntrevisa/public/latinoHWW/latino_2125_vbfToH125toWWTo2LAndTau2Nu.root");
 
-
-   TTree *t = new TTree("latino","latino");
-   t->SetDirectory(0);
-
-
-  for (int iEvent = 0 ; iEvent < ch->GetEntries () ; ++iEvent)
-    {
-      ch->GetEntry (iEvent) ;
- 
-      //  cout << "read " << ch->GetEntries () << " events from " << datasetBaseName.Data () << endl ;
-  //  DelphesTree dt ;
-  //dt.Init (ch) ;
-
-      if (jetpt1 < 30) continue;
-      if (jetpt2 < 30) continue;
-      if (pt1 < 20) continue;
-      if (pt2 < 20) continue;
-
-      if (fabs(jeteta1) > 4.7) continue;
-      if (fabs(jeteta2) > 4.7) continue;
-      if (fabs(eta1) > 2.5) continue;
-      if (fabs(eta2) > 2.5) continue;
-	
-      cout<<"ciao"<<endl;
-}
-}
-*/
