@@ -1,25 +1,26 @@
 {
 //=========Macro generated from canvas: latinoVar/latinoVar
-//=========  (Mon Feb 16 10:00:54 2015) by ROOT version5.34/09
-   TCanvas *latinoVar = new TCanvas("latinoVar", "latinoVar",765,52,600,600);
+//=========  (Mon Feb 16 15:01:26 2015) by ROOT version5.34/09
+   TCanvas *latinoVar = new TCanvas("latinoVar", "latinoVar",0,0,600,600);
    latinoVar->Range(0,0,1,1);
    latinoVar->SetFillColor(0);
    latinoVar->SetBorderMode(0);
    latinoVar->SetBorderSize(2);
    latinoVar->SetFrameBorderMode(0);
    
-   TH1F *hLatino = new TH1F("hLatino","njet",100,-1,8.639999);
-   hLatino->SetBinContent(32,0.7832394);
-   hLatino->SetBinContent(42,0.1469384);
-   hLatino->SetBinContent(52,0.04623739);
-   hLatino->SetBinContent(63,0.01535843);
-   hLatino->SetBinContent(73,0.005430158);
-   hLatino->SetBinContent(83,0.002309843);
-   hLatino->SetBinContent(94,0.0004862828);
-   hLatino->SetBinContent(101,5);
+   TH1F *hLatino = new TH1F("hLatino","njet",100,-1,9.84);
+   hLatino->SetBinContent(10,0.3287543);
+   hLatino->SetBinContent(19,0.3507178);
+   hLatino->SetBinContent(28,0.2721083);
+   hLatino->SetBinContent(37,0.03922489);
+   hLatino->SetBinContent(47,0.007587405);
+   hLatino->SetBinContent(56,0.001297846);
+   hLatino->SetBinContent(65,0.0002396023);
+   hLatino->SetBinContent(74,4.991714e-05);
+   hLatino->SetBinContent(93,1.996686e-05);
    hLatino->SetMinimum(0);
-   hLatino->SetMaximum(0.9790493);
-   hLatino->SetEntries(24783);
+   hLatino->SetMaximum(0.4383973);
+   hLatino->SetEntries(100267);
    hLatino->SetStats(0);
 
    Int_t ci;   // for color index setting
@@ -41,18 +42,19 @@
    hLatino->GetZaxis()->SetTitleFont(42);
    hLatino->Draw("");
    
-   TH1F *hDark = new TH1F("hDark","njet",100,-1,8.639999);
-   hDark->SetBinContent(11,0.01001831);
-   hDark->SetBinContent(21,0.06366476);
-   hDark->SetBinContent(32,0.2013358);
-   hDark->SetBinContent(42,0.2930087);
-   hDark->SetBinContent(52,0.2542281);
-   hDark->SetBinContent(63,0.1437036);
-   hDark->SetBinContent(73,0.03188624);
-   hDark->SetBinContent(83,0.002154476);
+   TH1F *hDark = new TH1F("hDark","njet",100,-1,9.84);
+   hDark->SetBinContent(10,0.1616485);
+   hDark->SetBinContent(19,0.306592);
+   hDark->SetBinContent(28,0.2747824);
+   hDark->SetBinContent(37,0.1580474);
+   hDark->SetBinContent(47,0.06762028);
+   hDark->SetBinContent(56,0.0220066);
+   hDark->SetBinContent(65,0.007502251);
+   hDark->SetBinContent(74,0.0010003);
+   hDark->SetBinContent(84,0.0008002401);
    hDark->SetMinimum(0);
-   hDark->SetMaximum(0.9790493);
-   hDark->SetEntries(9384);
+   hDark->SetMaximum(0.4383973);
+   hDark->SetEntries(10098);
    hDark->SetStats(0);
 
    ci = TColor::GetColor("#0000ff");
