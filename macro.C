@@ -19,29 +19,14 @@ TString latinoVar = "";
 TString darkVar = "";
 Float_t range = 1000.;
 
-void macro(/*TString latinoVar = "pfmet", TString darkVar = "MissingET.MET", float range = 1000.*/){
+void macro(){
 
-  //TFile* fDark = new TFile("/afs/cern.ch/user/d/dburns/public/HWWSignalMC/ppTOhxx_hTO2wTO2l2v_100GeV_8TeV.root","read");
   TFile* fDark = new TFile("/afs/cern.ch/user/n/ntrevisa/DarkMatter/DarkMatterLatino.root","read");
-  //  TFile* fLatino = new TFile("/afs/cern.ch/user/n/ntrevisa/public/latinoHWW/latino_1125_ggToH125toWWTo2LAndTau2Nu.root","read");
-  //TFile* fLatino2 = new TFile("/afs/cern.ch/user/n/ntrevisa/public/latinoHWW/latino_3125_wzttH125ToWW.root","read");
-  //TFile* fLatino3 = new TFile("/afs/cern.ch/user/n/ntrevisa/public/latinoHWW/latino_2125_vbfToH125toWWTo2LAndTau2Nu.root","read");
 
-  TFile* latinoSel = new TFile("/afs/cern.ch/user/n/ntrevisa/DarkMatter/latinoSelections.root","read");
+  TFile* latinoSel = new TFile("/afs/cern.ch/user/n/ntrevisa/DarkMatter/latinoSelections8TeV.root","read");
 
   TTree * tDark = (TTree*) fDark -> Get("latino");
   
-/*  TChain *ch = new TChain("latino","latino");
-  ch->Add("/afs/cern.ch/user/n/ntrevisa/public/latinoHWW/latino_1125_ggToH125toWWTo2LAndTau2Nu.root");
-  ch->Add("/afs/cern.ch/user/n/ntrevisa/public/latinoHWW/latino_3125_wzttH125ToWW.root");
-  ch->Add("/afs/cern.ch/user/n/ntrevisa/public/latinoHWW/latino_2125_vbfToH125toWWTo2LAndTau2Nu.root");
-  
-
-  TTree * tLatino = (TTree*) fLatino -> Get("latino");
-  TTree * tLatino2 = (TTree*) fLatino2 -> Get("latino");
-  TTree * tLatino3 = (TTree*) fLatino3 -> Get("latino");
-  */
-
   TTree * tLatino = (TTree*) latinoSel -> Get("latino");
 
   TObjArray *tl = tDark->GetListOfBranches();
@@ -53,7 +38,7 @@ void macro(/*TString latinoVar = "pfmet", TString darkVar = "MissingET.MET", flo
   Int_t cont = 0;
 
   while (tl -> After(tl->FindObject(nBranch)) != 0){
-    nBranch = tl -> At(cont) -> GetName();//After(tl->FindObject(nBranch))->GetName(); 
+    nBranch = tl -> At(cont) -> GetName();
     
     ++cont;
 
@@ -66,12 +51,6 @@ void macro(/*TString latinoVar = "pfmet", TString darkVar = "MissingET.MET", flo
   tDark -> Draw(darkVar+">>dump1");
   tLatino -> Draw(latinoVar+">>dump2");  
   
-  /*
-  tLatino -> Draw(latinoVar+">>+dump2");
-  tLatino2 -> Draw(latinoVar+">>+dump2");
-  tLatino3 -> Draw(latinoVar+">>+dump2");
-  */
-
     //implementing dynamic range for the histograms
   //find left bound for hDark
   for(Int_t q = 0; q < 10000; ++q)
@@ -115,16 +94,9 @@ void macro(/*TString latinoVar = "pfmet", TString darkVar = "MissingET.MET", flo
   if(leftBound > 0) leftBound = 0.;
   if(leftBound == 0) leftBound = -1.;
 
-
-  /*
-  Float_t r1 = dump1 -> GetRMS();
-  Float_t r2 = dump2 -> GetRMS();
-  range = std::max(5*r1,5*r2);
-  */
-
   //actual histograms fill
-  TH1F* hDark = new TH1F("hDark",darkVar,100,leftBound,rightBound);//-1.*range,range);
-  TH1F* hLatino = new TH1F("hLatino",latinoVar,100,leftBound,rightBound);//-1.*range,range);
+  TH1F* hDark = new TH1F("hDark",darkVar,100,leftBound,rightBound);
+  TH1F* hLatino = new TH1F("hLatino",latinoVar,100,leftBound,rightBound);
 
   TCanvas *c1 = new TCanvas("latinoVar","latinoVar",600,600);
 
@@ -133,12 +105,6 @@ void macro(/*TString latinoVar = "pfmet", TString darkVar = "MissingET.MET", flo
   tDark -> Draw(darkVar+">>hDark");
   tLatino -> Draw(latinoVar+">>hLatino");
   
-  /*
-  tLatino -> Draw(latinoVar+">>+hLatino");//,latinoVar+">-100");
-  tLatino2 -> Draw(latinoVar+">>+hLatino");//,latinoVar+">-100");
-  tLatino3 -> Draw(latinoVar+">>+hLatino");//,latinoVar+">-100");
-  */
-
   //histograms normalization
   double qqDark = hDark->Integral();
   double qqLatino = hLatino->Integral();
