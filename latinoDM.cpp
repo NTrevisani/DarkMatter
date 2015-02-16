@@ -1,3 +1,4 @@
+//This code opens the Dark Matter files and creates a new TTree where the informations are translated in the latino's default
 //compile typing: c++ -O2 -lm `root-config --cflags --glibs` -o latinoDM latinoDM.cpp
 //run typing: ./latinoDM
 
@@ -16,6 +17,8 @@
 #include "TNtuple.h"
 #include "TLorentzVector.h"
 #include "TMath.h"
+#include <math.h>
+#include "TSystem.h"
 
 #include "DelphesTree.h"
 #include "DelphesTree.C"
@@ -52,7 +55,7 @@ int readDataset (TString datasetBaseName, TTree* nt)
   //Float_t chmet;        nt->Branch("chmet"       , &chmet,"chmet");
   //Float_t dataset;      nt->Branch("dataset"     , &dataset,"dataset");
   Float_t dphill;       nt->Branch("dphill"      , &dphill,"dphill");
-  Float_t detall;       nt->Branch("detall"      , &detall,"detall");
+  //  Float_t detall;       //nt->Branch("detall"      , &detall,"detall");
   Float_t detajj;       nt->Branch("detajj"      , &detajj,"detajj");
   Float_t dphilljet;    nt->Branch("dphilljet"   , &dphilljet,"dphilljet");
   Float_t dphilljetjet; nt->Branch("dphilljetjet", &dphilljetjet,"dphilljetjet");
@@ -86,7 +89,7 @@ int readDataset (TString datasetBaseName, TTree* nt)
   //Float_t nbjet;        nt->Branch("nbjet"       , &nbjet,"nbjet");
   //Float_t nbjettche;    nt->Branch("nbjettche"   , &nbjettche,"nbjettche");
   //Float_t nextra;       nt->Branch("nextra"      , &nextra,"nextra");
-  //Float_t njet;         nt->Branch("njet"        , &njet,"njet");
+  Float_t njet;         nt->Branch("njet"        , &njet,"njet");
   //Float_t nvtx;         nt->Branch("nvtx"        , &nvtx,"nvtx");
   //Float_t pchmet;       nt->Branch("pchmet"      , &pchmet,"pchmet");
   Float_t pfmet;        nt->Branch("pfmet"       , &pfmet,"pfmet");
@@ -131,30 +134,40 @@ int readDataset (TString datasetBaseName, TTree* nt)
       std::vector<float> lepEta;
 
       int nLep = 0;
-      
-      //counting leptons, independently on the flavour
-      if(dt.Electron_PT[0] > 20 && dt.Electron_PT[0] < 20000){
+      /*
+      if (dt.Jet_PT[0] < 30) continue;
+      if (dt.Jet_PT[1] < 30) continue;
+      if (dt.Electron_PT[0] < 20) continue;
+      if (dt.Electron_PT[1]  < 20) continue;
+
+      if (fabs(dt.Jet_Eta[0]) > 4.7) continue;
+      if (fabs(dt.Jet_Eta[1]) > 4.7) continue;
+      if (fabs(dt.Electron_Eta[0]) > 2.5) continue;
+      if (fabs(dt.Electron_Eta[1]) > 2.5) continue;
+      */
+      //counting leptons, independently on the flavour, using latino's selections
+      if(dt.Electron_PT[0] > 10 && fabs(dt.Electron_Eta[0]) < 2.5){
 	++nLep;
 	lepPt.push_back(dt.Electron_PT[0]);
 	lepEta.push_back(dt.Electron_Eta[0]);
 	lepPhi.push_back(dt.Electron_Phi[0]);
       }
       
-      if(dt.Electron_PT[1] > 20 && dt.Electron_PT[1] < 20000){
+      if(dt.Electron_PT[1] > 10 && fabs(dt.Electron_Eta[1]) < 2.5){
 	++nLep;
 	lepPt.push_back(dt.Electron_PT[1]);
 	lepEta.push_back(dt.Electron_Eta[1]);
 	lepPhi.push_back(dt.Electron_Phi[1]);
       }
 
-      if(dt.Muon_PT[0] > 20  && dt.Muon_PT[0] < 20000){
+      if(dt.Muon_PT[0] > 10  && fabs(dt.Muon_Eta[0]) < 2.4){
 	++nLep;
 	lepPt.push_back(dt.Muon_PT[0]);
 	lepEta.push_back(dt.Muon_Eta[0]);
 	lepPhi.push_back(dt.Muon_Phi[0]);
       }
       
-      if(dt.Muon_PT[1] > 20  && dt.Muon_PT[1] < 20000){
+      if(dt.Muon_PT[1] > 10  && fabs(dt.Muon_Eta[1]) < 2.4){
 	++nLep;
 	lepPt.push_back(dt.Muon_PT[1]);
 	lepEta.push_back(dt.Muon_Eta[1]);
@@ -187,9 +200,9 @@ int readDataset (TString datasetBaseName, TTree* nt)
       std::vector<float> jetM;
 
       
-      //just to avoid considering empty jets, I select pT > 0.5GeV
+      //use the latino's jets selections: pT > 30GeV, |eta| < 4.7
       for (int i = 0; i < 10; ++i)
-	if(dt.Jet_PT[i] > 0.5){
+	if(dt.Jet_PT[i] > 20 && fabs(dt.Jet_Eta[i]) < 4.7){
 	  jetPt.push_back(dt.Jet_PT[i]);
 	  jetEta.push_back(dt.Jet_Eta[i]);
 	  jetPhi.push_back(dt.Jet_Phi[i]);
@@ -222,6 +235,8 @@ int readDataset (TString datasetBaseName, TTree* nt)
     phi2 = lepPhi.at(1);
     eta1 = lepEta.at(0);
     eta2 = lepEta.at(1);
+
+    njet = jetPt.size();
 
     //basic jets variables
     if( jetPt.size() > 0 ){
@@ -271,11 +286,11 @@ int readDataset (TString datasetBaseName, TTree* nt)
       dphill = 2*TMath::Pi() - dphill;
 
     //building deltaR_ll
-    detall = fabs (eta1 - eta2);
+    Float_t detall = fabs (eta1 - eta2);
     drll = sqrt(detall*detall + dphill*dphill);
     
     //building dphilljet
-    float meanllphi = min(phi1+dphill/2,phi2+dphill/2);
+    float meanllphi = dileptlv.Phi();//min(phi1+dphill/2,phi2+dphill/2);
     dphilljet = fabs (meanllphi - jetphi1);
     if( dphilljet > TMath::Pi() )
       dphilljet = 2*TMath::Pi() - dphilljet;
@@ -294,6 +309,12 @@ int readDataset (TString datasetBaseName, TTree* nt)
     
     //building deltaEta_jj
     detajj = fabs (jeteta1 - jeteta2);
+
+    //building dphilljetjet
+    float meanjetjetphi = dijettlv.Phi();
+    dphilljetjet = fabs (meanllphi - meanjetjetphi);
+    if( dphilljetjet > TMath::Pi() )
+      dphilljetjet = 2*TMath::Pi() - dphilljetjet;
 
       ++cont;
 
@@ -317,9 +338,19 @@ TString Name = "/afs/cern.ch/user/d/dburns/public/HWWSignalMC/ppTOhxx_hTO2wTO2l2
   lat->Write();
   outfile->Close();
 
-//  TFile *f = new TFile("/afs/cern.ch/user/d/dburns/public/HWWSignalMC/ppTOhxx_hTO2wTO2l2v_100GeV_8TeV.root","read");
-//  TTree *t = (TTree*)f -> Get("Delphes");
+  /*  TSystem gSystem;
+  gSystem.Exec("eosmount ../eosdir");
 
-  //variables definition, set branch address
+  TString Name13 = "/afs/cern.ch/user/n/ntrevisa/eosdir/cms/store/group/phys_higgs/cmshww/amassiro/RunII/test/GluGluToHToWWTo2LAndTau2Nu_M-125_13TeV-powheg-pythia6/crab_MCtest/150116_163732/0000/stepB_MC_ggHww_1.root";
+
+ TTree *lat13 = new TTree ("latino","latino");
+ lat13->SetDirectory(0);
+
+  TFile *outfile13 = new TFile("DarkMatterLatino13TeV.root", "recreate");
+  readDataset(Name13,lat13);
+  outfile13->cd();
+  lat13->Write();
+  outfile13->Close();*/
+
 
 }
