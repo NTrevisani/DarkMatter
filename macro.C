@@ -1,5 +1,5 @@
 //compares variables value from latinos H->WW->lvlv with pp->HXX->XXWW->XXlvlv
-//run typing:  root -l macro.C
+//run typing:  root -l -b 'macro.C(8)'
 
 #include "TFile.h"
 #include "TH1.h"
@@ -19,11 +19,22 @@ TString latinoVar = "";
 TString darkVar = "";
 Float_t range = 1000.;
 
-void macro(){
+void macro(Float_t Energy = 8/*TeV*/){
 
-  TFile* fDark = new TFile("/afs/cern.ch/user/n/ntrevisa/DarkMatter/DarkMatterLatino.root","read");
-
+  if(Energy == 8){
+  TFile* fDark = new TFile("/afs/cern.ch/user/n/ntrevisa/DarkMatter/DarkMatterLatino8TeV.root","read");
   TFile* latinoSel = new TFile("/afs/cern.ch/user/n/ntrevisa/DarkMatter/latinoSelections8TeV.root","read");
+  }
+
+  else if(Energy == 13){
+  TFile* fDark = new TFile("/afs/cern.ch/user/n/ntrevisa/DarkMatter/DarkMatterLatino13TeV.root","read");
+  TFile* latinoSel = new TFile("/afs/cern.ch/user/n/ntrevisa/DarkMatter/latinoSelections13TeV.root","read");
+  }
+
+  else{
+    cout<<"please select a valid centre of mass energy: 8 or 13 TeV"<<endl;
+    return;
+  }
 
   TTree * tDark = (TTree*) fDark -> Get("latino");
   
@@ -136,8 +147,17 @@ void macro(){
   c1->Print(latinoVar+".C");
   c1->Print(latinoVar+".pdf","pdf");
   c1->Print(latinoVar+".png","png");
-  gSystem->Exec("mv " + latinoVar + ".C distributions/");
-  gSystem->Exec("mv " + latinoVar + ".pdf distributions/");
-  gSystem->Exec("mv " + latinoVar + ".png distributions/");
+
+  if(Energy == 8){
+  gSystem->Exec("mv " + latinoVar + ".C distributions8TeV/");
+  gSystem->Exec("mv " + latinoVar + ".pdf distributions8TeV/");
+  gSystem->Exec("mv " + latinoVar + ".png distributions8TeV/");
+  }
+
+  if(Energy == 13){
+  gSystem->Exec("mv " + latinoVar + ".C distributions13TeV/");
+  gSystem->Exec("mv " + latinoVar + ".pdf distributions13TeV/");
+  gSystem->Exec("mv " + latinoVar + ".png distributions13TeV/");
+  }
 }
 }
