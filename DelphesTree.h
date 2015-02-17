@@ -11,6 +11,8 @@
 #include <TROOT.h>
 #include <TChain.h>
 #include <TFile.h>
+#include "TRef.h"
+#include "TRefArray.h"
 
 // Header file for the classes stored in the TTree if any.
 #include <TClonesArray.h>
@@ -497,7 +499,7 @@ public :
    TBranch        *b_ScalarHT_HT;   //!
    TBranch        *b_ScalarHT_size;   //!
 
-   DelphesTree(TTree *tree=0);
+   DelphesTree(TTree * /*tree*/ =0);
    virtual ~DelphesTree();
    virtual Int_t    Cut(Long64_t entry);
    virtual Int_t    GetEntry(Long64_t entry);
