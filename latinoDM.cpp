@@ -20,8 +20,8 @@
 #include <math.h>
 #include "TSystem.h"
 
-#include "DelphesTree.h"
-#include "DelphesTree.C"
+#include "DelphesTree13.h"
+#include "DelphesTree13.C"
 
 using namespace std;
 
@@ -45,9 +45,11 @@ int readDataset (TString datasetBaseName, TTree* nt)
   TChain * ch = new TChain ("Delphes") ;
   ch->Add (datasetBaseName) ;
   cout << "read " << ch->GetEntries () << " events from " << datasetBaseName.Data () << endl ;
-  DelphesTree dt ;
+
+  DelphesTree13 dt ;
   dt.Init (ch) ;
-  
+  cout<<"8"<<endl;
+
   //create ntuple
   
   //  Float_t baseW;        nt->Branch("baseW"       , &baseW,"baseW");
@@ -145,6 +147,7 @@ int readDataset (TString datasetBaseName, TTree* nt)
       if (fabs(dt.Electron_Eta[0]) > 2.5) continue;
       if (fabs(dt.Electron_Eta[1]) > 2.5) continue;
       */
+
       //counting leptons, independently on the flavour, using latino's selections
       if(dt.Electron_PT[0] > 10 && fabs(dt.Electron_Eta[0]) < 2.5){
 	++nLep;
@@ -207,7 +210,9 @@ int readDataset (TString datasetBaseName, TTree* nt)
 	  jetEta.push_back(dt.Jet_Eta[i]);
 	  jetPhi.push_back(dt.Jet_Phi[i]);
 	  jetM.push_back(dt.Jet_Mass[i]);
+	  //cout<<"pT = "<<dt.Jet_PT[i]<<", eta = "<<dt.Jet_Eta[i]<<", number of jets = "<<jetPt.size()<<endl;
 	}
+      //cout<<"njets variable = "<<njet<<endl;
 
       //ordering jets in pt
       app = 0.;
@@ -322,36 +327,35 @@ int readDataset (TString datasetBaseName, TTree* nt)
       nt->Fill();
     }
 
-      cout<<cont<<endl;
+  cout<<"cont = "<<cont<<endl;
 
 }
 
 int main(){
 
-TString Name = "/afs/cern.ch/user/d/dburns/public/HWWSignalMC/ppTOhxx_hTO2wTO2l2v_100GeV_8TeV.root";
+  TString Name = "/afs/cern.ch/user/d/dburns/public/HWWSignalMC/ppTOhxx_hTO2wTO2l2v_100GeV_8TeV.root";
 
- TTree *lat = new TTree ("latino","latino");
- lat->SetDirectory(0);
+  TTree *lat = new TTree ("latino","latino");
+  lat->SetDirectory(0);
 
-  TFile *outfile = new TFile("DarkMatterLatino.root", "recreate");
+  TFile *outfile = new TFile("DarkMatterLatino8TeV.root","recreate");
   readDataset(Name,lat);
   outfile->cd();
   lat->Write();
   outfile->Close();
 
-  /*  TSystem gSystem;
-  gSystem.Exec("eosmount ../eosdir");
 
-  TString Name13 = "/afs/cern.ch/user/n/ntrevisa/eosdir/cms/store/group/phys_higgs/cmshww/amassiro/RunII/test/GluGluToHToWWTo2LAndTau2Nu_M-125_13TeV-powheg-pythia6/crab_MCtest/150116_163732/0000/stepB_MC_ggHww_1.root";
+  
+  TString Name13 = "/afs/cern.ch/user/d/dburns/public/HWWSignalMC/ppTOhxx_hTO2wTO2l2v_100GeV_13TeV.root";
 
- TTree *lat13 = new TTree ("latino","latino");
- lat13->SetDirectory(0);
+  TTree *lat13 = new TTree ("latino","latino");
+  lat13->SetDirectory(0);
 
-  TFile *outfile13 = new TFile("DarkMatterLatino13TeV.root", "recreate");
+  TFile *outfile13 = new TFile("DarkMatterLatino13TeV.root","recreate");
   readDataset(Name13,lat13);
   outfile13->cd();
   lat13->Write();
-  outfile13->Close();*/
-
-
+  outfile13->Close();
+  
 }
+

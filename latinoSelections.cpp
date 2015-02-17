@@ -25,9 +25,10 @@
 
 using namespace std;
 
-int readDataset (TString datasetBaseName, TTree* nt)
+int readDataset (TString datasetBaseName, TTree* nt, TString albero)
 {
-  TChain * ch = new TChain ("latino") ;
+
+  TChain * ch = new TChain (albero);
   ch->Add (datasetBaseName) ;
   cout << "read " << ch->GetEntries () << " events from " << datasetBaseName.Data () << endl ;
   LatinoTree dt ;
@@ -123,6 +124,7 @@ int readDataset (TString datasetBaseName, TTree* nt)
       if (fabs(dt.eta2) > 2.5) continue;
 
       //detall = dt.detall;
+
 
    njet = dt.njet;       
    dphill = dt.dphill;
@@ -220,16 +222,32 @@ int readDataset (TString datasetBaseName, TTree* nt)
 }
 
 int main(){
+  
+  TString Name = "/afs/cern.ch/user/n/ntrevisa/public/latinoHWW/latino*";
 
-  TString Name = "/afs/cern.ch/user/n/ntrevisa/public/latinoHWW/latino*"; //_1125_ggToH125toWWTo2LAndTau2Nu.root";
-
- TTree *lat = new TTree ("latino","latino");
- lat->SetDirectory(0);
+  TTree *lat = new TTree ("latino","latino");
+  lat->SetDirectory(0);
 
   TFile *outfile = new TFile("latinoSelections8TeV.root", "recreate");
-  readDataset(Name,lat);
+  readDataset(Name,lat,"latino");
   outfile->cd();
   lat->Write();
   outfile->Close();
-}
 
+  /* 
+  gSystem->Exec("cd");
+  gSystem->Exec("eosmount eosdir");
+  */
+    
+  TString Name13 = "/afs/cern.ch/user/n/ntrevisa/eosdir/cms/store/group/phys_higgs/cmshww/amassiro/RunII/test/GluGluToHToWWTo2LAndTau2Nu_M-125_13TeV-powheg-pythia6/crab_MCtest/150116_163732/0000/stepB_MC_ggHww_1.root";
+
+  TTree *lat13 = new TTree ("latino","latino");
+  lat13->SetDirectory(0);
+
+  TFile *outfile13 = new TFile("latinoSelections13TeV.root", "recreate");
+  readDataset(Name13,lat13,"Tree/probe_tree");
+  outfile13->cd();
+  lat13->Write();
+  outfile13->Close();
+  
+}
