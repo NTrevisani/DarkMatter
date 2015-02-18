@@ -27,12 +27,21 @@ To exploit the HXX sample variables to build a latino-like tree, and ease the co
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 c++ -O2 -lm `root-config --cflags --glibs` -o latinoDM latinoDM.cpp
 
-latinoDM
+./latinoDM
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To apply selection cuts at the latino's H->WW samples, and do a proper comparison with the Dark Matter sample:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+c++ -O2 -lm `root-config --cflags --glibs` -o latinoSelections latinoSelections.cpp
+
+./latinoSelections
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 
 To plot the distributions of the variables in the two cases, on the same canvas:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-root -l macro.C
+root -l -b macro.C
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
