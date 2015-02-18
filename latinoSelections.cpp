@@ -239,7 +239,7 @@ int main(){
   gSystem->Exec("eosmount eosdir");
   */
     
-  TString Name13 = "/afs/cern.ch/user/n/ntrevisa/eosdir/cms/store/group/phys_higgs/cmshww/amassiro/RunII/test/GluGluToHToWWTo2LAndTau2Nu_M-125_13TeV-powheg-pythia6/crab_MCtest/150116_163732/0000/stepB_MC_ggHww_1.root";
+  TString Name13 = "/afs/cern.ch/user/n/ntrevisa/public/latinoHWW/stepB_MC_ggHww_1.root";
 
   TTree *lat13 = new TTree ("latino","latino");
   lat13->SetDirectory(0);
