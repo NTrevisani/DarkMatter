@@ -39,9 +39,11 @@ c++ -O2 -lm `root-config --cflags --glibs` -o latinoSelections latinoSelections.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-To plot the distributions of the variables in the two cases, on the same canvas:
+To plot the distributions of the variables in the two cases (SM and Dark Matter), on the same canvas, at 8TeV and 13TeV:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-root -l -b macro.C
+root -l -b 'macro.C(8)'
+
+root -l -b 'macro.C(13)'
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
